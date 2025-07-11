@@ -96,10 +96,6 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
           </div>
         </div>
 
-        {/* Description */}
-        <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
-          {project.project_description}
-        </p>
 
         {/* Categories */}
         {project.categories.length > 0 && (
