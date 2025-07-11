@@ -65,9 +65,9 @@ export const EditorsPick = () => {
 
   return (
     <section className="py-16 px-4 bg-gradient-hero">
-      <div className="max-w-7xl mx-auto">
+      <div className="w-full">
         {/* Header */}
-        <div className="text-center mb-12 animate-fade-in">
+        <div className="text-center mb-12 animate-fade-in max-w-4xl mx-auto">
           <div className="flex items-center justify-center gap-2 mb-4">
             <div className="bg-gradient-creative p-2 rounded-lg shadow-glow">
               <Crown className="w-6 h-6 text-primary-foreground" />
@@ -102,7 +102,7 @@ export const EditorsPick = () => {
         </div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-8 px-4">
           {editorsPicks.map((project, index) => (
             <div
               key={project.id}
