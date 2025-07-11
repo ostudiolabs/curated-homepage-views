@@ -119,7 +119,7 @@ export const EditorsPick = () => {
           >
             <CarouselContent className="-ml-2 md:-ml-4">
               {editorsPicks.map((project, index) => (
-                <CarouselItem key={project.id} className="pl-2 md:pl-4 basis-[300px] md:basis-[350px]">
+                <CarouselItem key={project.id} className="pl-2 md:pl-4 basis-[500px] md:basis-[600px] lg:basis-[700px]">
                   <div
                     className="animate-scale-in"
                     style={{
