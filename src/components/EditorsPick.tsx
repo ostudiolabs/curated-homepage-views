@@ -1,6 +1,13 @@
 import { Sparkles, TrendingUp, Crown } from "lucide-react";
 import { ProjectCard } from "./ProjectCard";
 import { useProjects } from "@/hooks/useProjects";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 export const EditorsPick = () => {
   const { editorsPicks, loading, error } = useProjects();
@@ -101,20 +108,33 @@ export const EditorsPick = () => {
           </div>
         </div>
 
-        {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-8 px-4">
-          {editorsPicks.map((project, index) => (
-            <div
-              key={project.id}
-              className="animate-scale-in"
-              style={{
-                animationDelay: `${index * 0.1}s`,
-                animationFillMode: 'both'
-              }}
-            >
-              <ProjectCard project={project} />
-            </div>
-          ))}
+        {/* Netflix-style Carousel */}
+        <div className="relative">
+          <Carousel
+            opts={{
+              align: "start",
+              loop: false,
+            }}
+            className="w-full"
+          >
+            <CarouselContent className="-ml-2 md:-ml-4">
+              {editorsPicks.map((project, index) => (
+                <CarouselItem key={project.id} className="pl-2 md:pl-4 basis-[280px] md:basis-[320px] lg:basis-[360px]">
+                  <div
+                    className="animate-scale-in"
+                    style={{
+                      animationDelay: `${index * 0.05}s`,
+                      animationFillMode: 'both'
+                    }}
+                  >
+                    <ProjectCard project={project} />
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="left-4" />
+            <CarouselNext className="right-4" />
+          </Carousel>
         </div>
 
         {/* View All Link */}
