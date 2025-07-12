@@ -56,6 +56,22 @@ export const ProjectCard = ({
             </div>
           </div>}
 
+        {/* Stats Icons - Top Left */}
+        <div className="absolute top-3 left-3 flex items-center gap-3 text-white text-sm z-10">
+          <div className="flex items-center gap-1 bg-black/50 backdrop-blur-sm px-2 py-1 rounded">
+            <Heart className="w-4 h-4" />
+            <span>{project.total_likes}</span>
+          </div>
+          <div className="flex items-center gap-1 bg-black/50 backdrop-blur-sm px-2 py-1 rounded">
+            <Eye className="w-4 h-4" />
+            <span>{project.project_views}</span>
+          </div>
+          <div className="flex items-center gap-1 bg-black/50 backdrop-blur-sm px-2 py-1 rounded">
+            <MessageCircle className="w-4 h-4" />
+            <span>{project.project_comment_count}</span>
+          </div>
+        </div>
+
         {/* Format Badge */}
         <div className="absolute top-3 right-3 bg-black/50 backdrop-blur-sm px-2 py-1 rounded text-xs font-medium text-white z-10">
           {project.project_format}
@@ -79,27 +95,11 @@ export const ProjectCard = ({
             </div>
           </div>
 
-          {/* Title and Stats on same level */}
-          <div className="flex items-center justify-between">
-            <div className="flex-1 mr-4">
-              <h4 className="text-white text-base line-clamp-2 font-normal">
-                {project.project_title}
-              </h4>
-            </div>
-            <div className="flex items-center gap-4 text-gray-300 text-sm flex-shrink-0">
-              <div className="flex items-center gap-1">
-                <Heart className="w-4 h-4" />
-                <span>{project.total_likes}</span>
-              </div>
-              <div className="flex items-center gap-1">
-                <Eye className="w-4 h-4" />
-                <span>{project.project_views}</span>
-              </div>
-              <div className="flex items-center gap-1">
-                <MessageCircle className="w-4 h-4" />
-                <span>{project.project_comment_count}</span>
-              </div>
-            </div>
+          {/* Title */}
+          <div>
+            <h4 className="text-white text-base line-clamp-2 font-normal">
+              {project.project_title}
+            </h4>
           </div>
         </div>
       </div>
