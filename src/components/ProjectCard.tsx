@@ -56,8 +56,8 @@ export const ProjectCard = ({
             </div>
           </div>}
 
-        {/* Stats Icons - Top Left */}
-        <div className="absolute top-3 left-3 flex items-center gap-3 text-white text-sm z-10">
+        {/* Stats Icons - Top Left - Only on hover */}
+        <div className="absolute top-3 left-3 flex items-center gap-3 text-white text-sm z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
           <div className="flex items-center gap-1 bg-black/50 backdrop-blur-sm px-2 py-1 rounded">
             <Heart className="w-4 h-4" />
             <span>{project.total_likes}</span>
