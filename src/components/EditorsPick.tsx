@@ -124,8 +124,8 @@ export const EditorsPick = () => {
 
         {/* Grid Layout - Randomized Projects */}
         {randomizedProjects.length > 0 && (
-          <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-8">
+          <div className="w-full px-4">
+            <div className="text-center mb-8 max-w-4xl mx-auto">
               <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
                 Explore More
               </h3>
@@ -134,7 +134,7 @@ export const EditorsPick = () => {
               </p>
             </div>
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 gap-2 md:gap-4">
               {randomizedProjects.map((project, index) => (
                 <div key={`grid-${project.id}`} className="animate-scale-in aspect-square" style={{
                   animationDelay: `${index * 0.02}s`,
