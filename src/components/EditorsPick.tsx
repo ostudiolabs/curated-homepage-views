@@ -142,10 +142,12 @@ export const EditorsPick = () => {
           align: "start",
           loop: false
         }} className="w-full">
-            {/* Navigation Controls Above Carousel */}
-            <CarouselNavigation />
-            
             <CarouselContent className="-ml-2 md:-ml-4">
+              {/* Navigation Controls Above Carousel - moved inside content */}
+              <div className="absolute -top-16 left-1/2 transform -translate-x-1/2 z-10">
+                <CarouselNavigation />
+              </div>
+              
               {editorsPicks.map((project, index) => <CarouselItem key={project.id} className="pl-2 md:pl-4 basis-[320px] sm:basis-[380px] md:basis-[450px] lg:basis-[520px] xl:basis-[600px]">
                   <div className="animate-scale-in" style={{
                 animationDelay: `${index * 0.05}s`,
