@@ -80,8 +80,15 @@ export const ProjectCard = ({
         {/* Overlay Content - Hidden by default, shown on hover/tap */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-end p-5 z-10">
 
+          {/* Title */}
+          <div className="mb-3">
+            <h4 className="text-white text-base line-clamp-2 font-normal">
+              {project.project_title}
+            </h4>
+          </div>
+
           {/* Author */}
-          <div className="flex items-center gap-3 mb-3">
+          <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-full overflow-hidden bg-muted">
               <img src={project.user_profile_picture} alt={project.name} className="w-full h-full object-cover" onError={e => {
               const target = e.target as HTMLImageElement;
@@ -93,13 +100,6 @@ export const ProjectCard = ({
               <p className="text-sm font-medium text-white">{project.name}</p>
               <p className="text-xs text-gray-300">@{project.username}</p>
             </div>
-          </div>
-
-          {/* Title */}
-          <div>
-            <h4 className="text-white text-base line-clamp-2 font-normal">
-              {project.project_title}
-            </h4>
           </div>
         </div>
       </div>
