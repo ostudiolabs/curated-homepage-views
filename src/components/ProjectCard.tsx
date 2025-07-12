@@ -1,16 +1,15 @@
 import { useState } from "react";
-import Image from "next/image";
 import { Heart, Eye, MessageCircle, Play, Crown } from "lucide-react";
 import type { Project } from "@/types/project";
 interface ProjectCardProps {
   project: Project;
-  variant?: "default" | "square";
-  size?: "small" | "medium" | "large" | "xl";
+  variant?: 'default' | 'square';
+  size?: 'small' | 'medium' | 'large' | 'xl';
 }
 export const ProjectCard = ({
   project,
-  variant = "default",
-  size = "medium",
+  variant = 'default',
+  size = 'medium'
 }: ProjectCardProps) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
@@ -24,57 +23,38 @@ export const ProjectCard = ({
     setImageLoaded(true);
   };
   const getSizeClasses = () => {
-    if (variant === "square") {
+    if (variant === 'square') {
       switch (size) {
-        case "small":
-          return "col-span-1 row-span-1";
-        case "medium":
-          return "col-span-2 row-span-1";
-        case "large":
-          return "col-span-2 row-span-2";
-        case "xl":
-          return "col-span-4 row-span-2";
+        case 'small':
+          return 'col-span-1 row-span-1';
+        case 'medium':
+          return 'col-span-2 row-span-1';
+        case 'large':
+          return 'col-span-2 row-span-2';
+        case 'xl':
+          return 'col-span-4 row-span-2';
         default:
-          return "col-span-1 row-span-1";
+          return 'col-span-1 row-span-1';
       }
     }
-    return "";
+    return '';
   };
-  return (
-    <div
-      className={`group relative bg-gradient-card rounded-xl overflow-hidden transition-all duration-500 hover:scale-[1.02] hover:shadow-card-hover animate-scale-in cursor-pointer ${getSizeClasses()}`}
-    >
-      {/* Full Image Container */}
-      <div
-        className={`relative overflow-hidden bg-muted ${variant === "square" ? "aspect-square" : "aspect-video"}`}
-      >
-        {!imageLoaded && (
-          <div className="absolute inset-0 bg-gradient-to-br from-muted to-secondary animate-pulse" />
-        )}
+  return <div className={`group relative bg-gradient-card rounded-xl overflow-hidden transition-all duration-500 hover:scale-[1.02] hover:shadow-card-hover animate-scale-in cursor-pointer ${getSizeClasses()}`}>
 
-        {!imageError && thumbnailUrl ? (
-          <Image
-            src={thumbnailUrl}
-            alt={project.project_title}
-            fill
-            className={`object-cover transition-all duration-700 group-hover:scale-110 ${imageLoaded ? "opacity-100" : "opacity-0"}`}
-            onLoad={handleImageLoad}
-            onError={handleImageError}
-          />
-        ) : (
-          <div className="w-full h-full bg-gradient-to-br from-muted to-secondary flex items-center justify-center">
+      {/* Full Image Container */}
+      <div className={`relative overflow-hidden bg-muted ${variant === 'square' ? 'aspect-square' : 'aspect-video'}`}>
+        {!imageLoaded && <div className="absolute inset-0 bg-gradient-to-br from-muted to-secondary animate-pulse" />}
+        
+        {!imageError && thumbnailUrl ? <img src={thumbnailUrl} alt={project.project_title} className={`w-full h-full object-cover transition-all duration-700 group-hover:scale-110 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`} onLoad={handleImageLoad} onError={handleImageError} /> : <div className="w-full h-full bg-gradient-to-br from-muted to-secondary flex items-center justify-center">
             <div className="text-muted-foreground text-sm">No Preview</div>
-          </div>
-        )}
+          </div>}
 
         {/* Video Indicator */}
-        {project.is_video && (
-          <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+        {project.is_video && <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
             <div className="bg-primary/90 rounded-full p-3 backdrop-blur-sm">
               <Play className="w-6 h-6 text-primary-foreground fill-current" />
             </div>
-          </div>
-        )}
+          </div>}
 
         {/* Stats Icons - Top Left - Only on hover */}
         <div className="absolute top-3 left-3 flex items-center gap-3 text-white text-sm z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -99,6 +79,7 @@ export const ProjectCard = ({
 
         {/* Overlay Content - Hidden by default, shown on hover/tap */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-end p-5 z-10">
+
           {/* Title */}
           <div className="mb-3">
             <h4 className="text-white text-base line-clamp-2 font-normal">
@@ -108,19 +89,12 @@ export const ProjectCard = ({
 
           {/* Author */}
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full overflow-hidden bg-muted relative">
-              <Image
-                src={project.user_profile_picture}
-                alt={project.name}
-                fill
-                className="object-cover"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.style.display = "none";
-                  target.parentElement!.style.background =
-                    "var(--gradient-creative)";
-                }}
-              />
+            <div className="w-10 h-10 rounded-full overflow-hidden bg-muted">
+              <img src={project.user_profile_picture} alt={project.name} className="w-full h-full object-cover" onError={e => {
+              const target = e.target as HTMLImageElement;
+              target.style.display = 'none';
+              target.parentElement!.style.background = 'var(--gradient-creative)';
+            }} />
             </div>
             <div>
               <p className="text-sm font-medium text-white">{project.name}</p>
@@ -129,6 +103,5 @@ export const ProjectCard = ({
           </div>
         </div>
       </div>
-    </div>
-  );
+    </div>;
 };
