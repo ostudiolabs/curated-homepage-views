@@ -14,11 +14,6 @@ const Index = () => {
       <section className="relative py-20 px-4 bg-gradient-hero border-b border-border overflow-hidden">
         <div className="max-w-5xl mx-auto text-center">
           <div className="animate-fade-in">
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
-              <Sparkles className="w-4 h-4 text-primary" />
-              <span className="text-sm font-medium text-primary">Curated Excellence</span>
-            </div>
 
             {/* Main Title */}
             <h1 className="text-5xl md:text-7xl font-bold text-foreground mb-6 tracking-tight">
