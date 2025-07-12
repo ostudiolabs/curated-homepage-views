@@ -107,7 +107,7 @@ export const ProjectCard = ({ project, variant = 'default', size = 'medium' }: P
           </div>
 
           {/* Stats */}
-          <div className="flex items-center justify-between text-gray-300 text-sm">
+          <div className="flex items-center justify-end text-gray-300 text-sm">
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-1">
                 <Heart className="w-4 h-4" />
