@@ -5,10 +5,10 @@ import type { Project } from "@/types/project";
 interface ProjectCardProps {
   project: Project;
   variant?: 'default' | 'square';
-  size?: 'small' | 'medium' | 'large' | 'xl';
+  size?: '1x' | '2x' | '3x';
 }
 
-export const ProjectCard = ({ project, variant = 'default', size = 'medium' }: ProjectCardProps) => {
+export const ProjectCard = ({ project, variant = 'default', size = '1x' }: ProjectCardProps) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
 
@@ -27,10 +27,9 @@ export const ProjectCard = ({ project, variant = 'default', size = 'medium' }: P
   const getSizeClasses = () => {
     if (variant === 'square') {
       switch (size) {
-        case 'small': return 'col-span-1 row-span-1';
-        case 'medium': return 'col-span-2 row-span-1';
-        case 'large': return 'col-span-2 row-span-2';
-        case 'xl': return 'col-span-3 row-span-2';
+        case '1x': return 'col-span-1 row-span-1';
+        case '2x': return 'col-span-2 row-span-2';
+        case '3x': return 'col-span-3 row-span-2';
         default: return 'col-span-1 row-span-1';
       }
     }
