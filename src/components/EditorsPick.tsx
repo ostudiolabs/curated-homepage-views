@@ -86,6 +86,12 @@ export const EditorsPick = () => {
           </div>
         </div>
 
+        {/* Carousel Navigation */}
+        <div className="flex justify-center gap-4 mb-8">
+          <CarouselPrevious className="relative left-0 translate-y-0" />
+          <CarouselNext className="relative right-0 translate-y-0" />
+        </div>
+
         {/* Netflix-style Carousel */}
         <div className="relative">
           <Carousel opts={{
@@ -102,8 +108,6 @@ export const EditorsPick = () => {
                   </div>
                 </CarouselItem>)}
             </CarouselContent>
-            
-            <CarouselNext className="right-4" />
           </Carousel>
         </div>
 
