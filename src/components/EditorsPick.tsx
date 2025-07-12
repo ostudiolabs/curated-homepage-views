@@ -1,9 +1,84 @@
 import { useMemo } from "react";
-import { Sparkles, TrendingUp, Crown, Grid } from "lucide-react";
+import { Sparkles, TrendingUp, Crown, Grid, ArrowLeft, ArrowRight } from "lucide-react";
 import { ProjectCard } from "./ProjectCard";
 import { useProjects } from "@/hooks/useProjects";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, useCarousel } from "@/components/ui/carousel";
 import { shuffle } from "@/lib/shuffle";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+
+// Custom navigation components with conditional styling
+const CustomCarouselPrevious = () => {
+  const { scrollPrev, canScrollPrev, canScrollNext } = useCarousel();
+  
+  const getButtonStyle = () => {
+    if (canScrollPrev && canScrollNext) {
+      // Both directions available - orange
+      return "bg-primary border-primary text-white hover:bg-primary/90";
+    } else if (!canScrollPrev && canScrollNext) {
+      // Only right available - default style  
+      return "bg-white/10 border-white/20 text-white hover:bg-white/20";
+    } else if (canScrollPrev && !canScrollNext) {
+      // Only left available - orange
+      return "bg-primary border-primary text-white hover:bg-primary/90";
+    } else {
+      // No data available - default style
+      return "bg-white/10 border-white/20 text-white hover:bg-white/20";
+    }
+  };
+
+  return (
+    <Button
+      variant="outline"
+      size="icon"
+      className={cn(
+        "relative left-0 translate-y-0 h-8 w-8 rounded-full backdrop-blur-sm transition-all duration-300",
+        getButtonStyle()
+      )}
+      disabled={!canScrollPrev}
+      onClick={scrollPrev}
+    >
+      <ArrowLeft className="h-4 w-4" />
+      <span className="sr-only">Previous slide</span>
+    </Button>
+  );
+};
+
+const CustomCarouselNext = () => {
+  const { scrollNext, canScrollPrev, canScrollNext } = useCarousel();
+  
+  const getButtonStyle = () => {
+    if (canScrollPrev && canScrollNext) {
+      // Both directions available - orange
+      return "bg-primary border-primary text-white hover:bg-primary/90";
+    } else if (!canScrollPrev && canScrollNext) {
+      // Only right available - orange
+      return "bg-primary border-primary text-white hover:bg-primary/90";
+    } else if (canScrollPrev && !canScrollNext) {
+      // Only left available - default style
+      return "bg-white/10 border-white/20 text-white hover:bg-white/20";
+    } else {
+      // No data available - default style
+      return "bg-white/10 border-white/20 text-white hover:bg-white/20";
+    }
+  };
+
+  return (
+    <Button
+      variant="outline"
+      size="icon"
+      className={cn(
+        "relative right-0 translate-y-0 h-8 w-8 rounded-full backdrop-blur-sm transition-all duration-300",
+        getButtonStyle()
+      )}
+      disabled={!canScrollNext}
+      onClick={scrollNext}
+    >
+      <ArrowRight className="h-4 w-4" />
+      <span className="sr-only">Next slide</span>
+    </Button>
+  );
+};
 export const EditorsPick = () => {
   const {
     editorsPicks,
@@ -94,8 +169,8 @@ export const EditorsPick = () => {
         }} className="w-full">
             {/* Navigation positioned above carousel */}
             <div className="flex justify-center gap-4 mb-8">
-              <CarouselPrevious className="relative left-0 translate-y-0 bg-white/10 border-white/20 text-white hover:bg-primary hover:text-white hover:border-primary backdrop-blur-sm" />
-              <CarouselNext className="relative right-0 translate-y-0 bg-white/10 border-white/20 text-white hover:bg-primary hover:text-white hover:border-primary backdrop-blur-sm" />
+              <CustomCarouselPrevious />
+              <CustomCarouselNext />
             </div>
             
             <CarouselContent className="-ml-2 md:-ml-4">
