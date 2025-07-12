@@ -39,13 +39,6 @@ export const ProjectCard = ({ project, variant = 'default', size = 'medium' }: P
 
   return (
     <div className={`group relative bg-gradient-card rounded-xl overflow-hidden transition-all duration-500 hover:scale-[1.02] hover:shadow-card-hover animate-scale-in cursor-pointer ${getSizeClasses()}`}>
-      {/* Editor's Pick Badge */}
-      {isEditorsPick && (
-        <div className="absolute top-3 left-3 z-20 bg-gradient-creative px-3 py-1 rounded-full flex items-center gap-1 text-sm font-medium text-primary-foreground shadow-glow">
-          <Crown className="w-3 h-3" />
-          Editor's Pick
-        </div>
-      )}
 
       {/* Full Image Container */}
       <div className={`relative overflow-hidden bg-muted ${variant === 'square' ? 'aspect-square' : 'aspect-video'}`}>
@@ -85,10 +78,6 @@ export const ProjectCard = ({ project, variant = 'default', size = 'medium' }: P
 
         {/* Overlay Content - Hidden by default, shown on hover/tap */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-end p-5 z-10">
-          {/* Title */}
-          <h3 className="font-semibold text-white text-lg mb-2 line-clamp-2">
-            {project.project_title}
-          </h3>
 
           {/* Author */}
           <div className="flex items-center gap-3 mb-3">
@@ -110,24 +99,12 @@ export const ProjectCard = ({ project, variant = 'default', size = 'medium' }: P
             </div>
           </div>
 
-          {/* Categories */}
-          {project.categories.length > 0 && (
-            <div className="flex flex-wrap gap-2 mb-3">
-              {project.categories.slice(0, 2).map((category) => (
-                <span
-                  key={category.id}
-                  className="px-2 py-1 bg-white/20 backdrop-blur-sm text-white text-xs rounded-md"
-                >
-                  {category.category_name}
-                </span>
-              ))}
-              {project.categories.length > 2 && (
-                <span className="px-2 py-1 bg-white/20 backdrop-blur-sm text-white text-xs rounded-md">
-                  +{project.categories.length - 2}
-                </span>
-              )}
-            </div>
-          )}
+          {/* Title */}
+          <div className="mb-3">
+            <h3 className="font-semibold text-white text-lg line-clamp-2">
+              {project.project_title}
+            </h3>
+          </div>
 
           {/* Stats */}
           <div className="flex items-center justify-between text-gray-300 text-sm">
