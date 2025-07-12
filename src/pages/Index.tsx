@@ -33,24 +33,14 @@ const Index = () => {
               <span className="text-primary font-semibold"> digital creativity</span> from talented artists around the world.
             </p>
             
-            {/* Call to Action Buttons */}
+            {/* Call to Action Button */}
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
               <Button 
-                onClick={scrollToContent}
                 size="lg" 
                 className="px-8 py-4 text-lg font-semibold bg-gradient-creative hover:shadow-creative transition-all duration-300 hover:scale-105"
               >
-                <TrendingUp className="w-5 h-5 mr-2" />
-                Explore Collection
-              </Button>
-              
-              <Button 
-                variant="outline" 
-                size="lg"
-                className="px-8 py-4 text-lg font-semibold border-primary/30 hover:bg-primary/10 hover:border-primary/50 transition-all duration-300"
-              >
                 <Sparkles className="w-5 h-5 mr-2" />
-                Submit Your Work
+                Submit your Artwork
               </Button>
             </div>
 
