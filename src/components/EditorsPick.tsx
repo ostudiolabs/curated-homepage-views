@@ -125,45 +125,26 @@ export const EditorsPick = () => {
         </div>
 
         {/* Grid Section */}
-        {gridData.length > 0 && (
-          <div className="mt-20">
+        {gridData.length > 0 && <div className="mt-20">
             {/* Grid Header */}
             <div className="text-center mb-12 animate-fade-in max-w-4xl mx-auto">
-              <div className="flex items-center justify-center gap-2 mb-4">
-                <div className="bg-gradient-creative p-2 rounded-lg shadow-glow">
-                  <Grid className="w-6 h-6 text-primary-foreground" />
-                </div>
-                <span className="bg-gradient-creative bg-clip-text text-transparent font-semibold text-lg">
-                  Explore More
-                </span>
-              </div>
               
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                Creative Showcase
-              </h2>
               
-              <p className="text-muted-foreground text-lg max-w-2xl mx-auto leading-relaxed">
-                A dynamic grid of exceptional projects, refreshed each time you visit.
-              </p>
+              
+              
+              
             </div>
 
             {/* Grid Layout */}
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 auto-rows-fr">
-              {gridData.map((project, index) => (
-                <div key={`grid-${project.id}`} className="animate-scale-in" style={{
-                  animationDelay: `${index * 0.02}s`,
-                  animationFillMode: 'both'
-                }}>
-                  <ProjectCard 
-                    project={project} 
-                    variant="square" 
-                    size={project.gridSize}
-                  />
-                </div>
-              ))}
+              {gridData.map((project, index) => <div key={`grid-${project.id}`} className="animate-scale-in" style={{
+            animationDelay: `${index * 0.02}s`,
+            animationFillMode: 'both'
+          }}>
+                  <ProjectCard project={project} variant="square" size={project.gridSize} />
+                </div>)}
             </div>
-          </div>
-        )}
+          </div>}
       </div>
     </section>;
 };

@@ -14,12 +14,8 @@ const Index = () => {
             </p>
             
             <div className="flex items-center justify-center gap-4">
-              <button className="bg-gradient-creative hover:shadow-glow text-primary-foreground font-semibold px-8 py-3 rounded-lg transition-all duration-300 hover:scale-105">
-                Explore Gallery
-              </button>
-              <button className="border border-border hover:bg-secondary text-foreground font-semibold px-8 py-3 rounded-lg transition-all duration-300 hover:scale-105">
-                Join Community
-              </button>
+              
+              
             </div>
           </div>
         </div>
