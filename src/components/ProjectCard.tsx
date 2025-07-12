@@ -102,8 +102,8 @@ export const ProjectCard = ({ project, variant = 'default', size = 'medium' }: P
           {/* Title and Stats on same level */}
           <div className="flex items-center justify-between">
             <div className="flex-1 mr-4">
-              <h3 className="font-semibold text-white text-lg line-clamp-2">
-                {project.project_title}
+              <h3 className="font-semibold text-white text-lg line-clamp-4">
+                {project.project_title} - A comprehensive creative project showcasing innovative design solutions and modern development techniques. This project demonstrates exceptional attention to detail and creative vision that stands out in the creative community.
               </h3>
             </div>
             <div className="flex items-center gap-4 text-gray-300 text-sm flex-shrink-0">
