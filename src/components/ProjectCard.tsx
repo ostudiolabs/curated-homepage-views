@@ -30,7 +30,7 @@ export const ProjectCard = ({ project, variant = 'default', size = 'medium' }: P
         case 'small': return 'col-span-1 row-span-1';
         case 'medium': return 'col-span-2 row-span-1';
         case 'large': return 'col-span-2 row-span-2';
-        case 'xl': return 'col-span-3 row-span-2';
+        case 'xl': return 'col-span-4 row-span-2';
         default: return 'col-span-1 row-span-1';
       }
     }

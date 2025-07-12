@@ -11,12 +11,12 @@ export const EditorsPick = () => {
     error
   } = useProjects();
 
-  // Create shuffled grid data with exactly 3 cards at 2x size
+  // Create shuffled grid data with exactly 2 cards at 4x size
   const gridData = useMemo(() => {
     const shuffledProjects = shuffle(editorsPicks);
     return shuffledProjects.map((project, index) => ({
       ...project,
-      gridSize: index < 3 ? 'large' as const : 'small' as const
+      gridSize: index < 2 ? 'xl' as const : 'small' as const
     }));
   }, [editorsPicks]);
   if (loading) {
