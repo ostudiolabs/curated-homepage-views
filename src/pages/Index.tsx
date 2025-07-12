@@ -36,11 +36,14 @@ const Index = () => {
             {/* Call to Action Button */}
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
               <Button 
+                asChild
                 size="lg" 
                 className="px-8 py-4 text-lg font-semibold bg-gradient-creative hover:shadow-creative transition-all duration-300 hover:scale-105"
               >
-                <Sparkles className="w-5 h-5 mr-2" />
-                Submit your Artwork
+                <a href="https://cgafrica.com/upload" target="_blank" rel="noopener noreferrer">
+                  <Sparkles className="w-5 h-5 mr-2" />
+                  Submit your Artwork
+                </a>
               </Button>
             </div>
 
