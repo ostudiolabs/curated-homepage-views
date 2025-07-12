@@ -89,7 +89,7 @@ export const ProjectCard = ({
 
           {/* Author */}
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full overflow-hidden bg-muted">
+            <div className="w-10 h-10 rounded-full overflow-hidden bg-muted">
               <img src={project.user_profile_picture} alt={project.name} className="w-full h-full object-cover" onError={e => {
               const target = e.target as HTMLImageElement;
               target.style.display = 'none';
