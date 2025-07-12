@@ -37,7 +37,7 @@ All colors MUST be HSL.
     --ring: 270 95% 75%;
 
     /* Creative design tokens */
-    --gradient-creative: linear-gradient(135deg, hsl(270 95% 75%), hsl(280 100% 70%), hsl(290 100% 80%));
+    --gradient-creative: #f26522;
     --gradient-card: linear-gradient(145deg, hsl(240 6% 10%), hsl(240 4% 16%));
     --gradient-hero: linear-gradient(180deg, hsl(240 10% 3.9%), hsl(240 6% 10%));
     --shadow-creative: 0 10px 30px -5px hsl(270 95% 75% / 0.3);
