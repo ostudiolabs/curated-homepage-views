@@ -86,18 +86,18 @@ export const EditorsPick = () => {
           </div>
         </div>
 
-        {/* Carousel Navigation */}
-        <div className="flex justify-center gap-4 mb-8">
-          <CarouselPrevious className="relative left-0 translate-y-0" />
-          <CarouselNext className="relative right-0 translate-y-0" />
-        </div>
-
         {/* Netflix-style Carousel */}
         <div className="relative">
           <Carousel opts={{
           align: "start",
           loop: false
         }} className="w-full">
+            {/* Navigation positioned above carousel */}
+            <div className="flex justify-center gap-4 mb-8">
+              <CarouselPrevious className="relative left-0 translate-y-0" />
+              <CarouselNext className="relative right-0 translate-y-0" />
+            </div>
+            
             <CarouselContent className="-ml-2 md:-ml-4">
               {editorsPicks.map((project, index) => <CarouselItem key={project.id} className="pl-2 md:pl-4 basis-[320px] sm:basis-[380px] md:basis-[450px] lg:basis-[520px] xl:basis-[600px]">
                   <div className="animate-scale-in" style={{
