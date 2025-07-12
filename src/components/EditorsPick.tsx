@@ -1,4 +1,4 @@
-import { Sparkles, TrendingUp, Crown, Play } from "lucide-react";
+import { Sparkles, TrendingUp, Crown } from "lucide-react";
 import { ProjectCard } from "./ProjectCard";
 import { useProjects } from "@/hooks/useProjects";
 import {
@@ -71,103 +71,55 @@ export const EditorsPick = () => {
   }
 
   return (
-    <section className="bg-gradient-hero">
+    <section className="py-16 px-4 bg-gradient-hero">
       <div className="w-full">
-        {/* Mobile Hero Section */}
-        <div className="block md:hidden">
-          {editorsPicks.length > 0 && (
-            <div className="relative h-[60vh] overflow-hidden">
-              <img
-                src={editorsPicks[0].project_thumbnail?.[0]?.project_thumbnail || `https://picsum.photos/800/600?random=${editorsPicks[0].id}`}
-                alt={editorsPicks[0].project_title}
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-4">
-                <div className="flex items-center gap-2 mb-3">
-                  <div className="bg-gradient-creative p-1.5 rounded-lg">
-                    <Crown className="w-4 h-4 text-primary-foreground" />
-                  </div>
-                  <span className="bg-gradient-creative bg-clip-text text-transparent font-semibold text-sm">
-                    Editor's Pick
-                  </span>
-                </div>
-                <h1 className="text-2xl font-bold text-white mb-2 line-clamp-2">
-                  {editorsPicks[0].project_title}
-                </h1>
-                <p className="text-gray-300 text-sm mb-4">
-                  by {editorsPicks[0].name}
-                </p>
-                <div className="flex gap-3">
-                  <button className="bg-white text-black px-6 py-2 rounded font-semibold text-sm flex items-center gap-2">
-                    <Play className="w-4 h-4 fill-current" />
-                    View
-                  </button>
-                  <button className="bg-gray-600/80 text-white px-6 py-2 rounded font-semibold text-sm">
-                    Info
-                  </button>
-                </div>
-              </div>
+        {/* Header */}
+        <div className="text-center mb-12 animate-fade-in max-w-4xl mx-auto">
+          <div className="flex items-center justify-center gap-2 mb-4">
+            <div className="bg-gradient-creative p-2 rounded-lg shadow-glow">
+              <Crown className="w-6 h-6 text-primary-foreground" />
             </div>
-          )}
-        </div>
+            <span className="bg-gradient-creative bg-clip-text text-transparent font-semibold text-lg">
+              Editor's Pick
+            </span>
+          </div>
+          
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+            Curated Excellence
+          </h2>
+          
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto leading-relaxed">
+            Discover handpicked projects that showcase exceptional creativity, technical mastery, 
+            and artistic vision from our talented community.
+          </p>
 
-        {/* Desktop Header */}
-        <div className="hidden md:block text-center py-16 px-4">
-          <div className="text-center mb-12 animate-fade-in max-w-4xl mx-auto">
-            <div className="flex items-center justify-center gap-2 mb-4">
-              <div className="bg-gradient-creative p-2 rounded-lg shadow-glow">
-                <Crown className="w-6 h-6 text-primary-foreground" />
-              </div>
-              <span className="bg-gradient-creative bg-clip-text text-transparent font-semibold text-lg">
-                Editor's Pick
+          {/* Stats */}
+          <div className="flex items-center justify-center gap-8 mt-8">
+            <div className="flex items-center gap-2 text-muted-foreground">
+              <TrendingUp className="w-5 h-5 text-primary" />
+              <span className="text-sm font-medium">
+                {editorsPicks.length} Featured Project{editorsPicks.length !== 1 ? 's' : ''}
               </span>
             </div>
-            
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-              Curated Excellence
-            </h2>
-            
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto leading-relaxed">
-              Discover handpicked projects that showcase exceptional creativity, technical mastery, 
-              and artistic vision from our talented community.
-            </p>
-
-            {/* Stats */}
-            <div className="flex items-center justify-center gap-8 mt-8">
-              <div className="flex items-center gap-2 text-muted-foreground">
-                <TrendingUp className="w-5 h-5 text-primary" />
-                <span className="text-sm font-medium">
-                  {editorsPicks.length} Featured Project{editorsPicks.length !== 1 ? 's' : ''}
-                </span>
-              </div>
-              <div className="flex items-center gap-2 text-muted-foreground">
-                <Sparkles className="w-5 h-5 text-primary" />
-                <span className="text-sm font-medium">Hand Selected</span>
-              </div>
+            <div className="flex items-center gap-2 text-muted-foreground">
+              <Sparkles className="w-5 h-5 text-primary" />
+              <span className="text-sm font-medium">Hand Selected</span>
             </div>
           </div>
         </div>
 
-        {/* Mobile Section Title */}
-        <div className="block md:hidden px-4 py-6">
-          <h2 className="text-xl font-bold text-foreground mb-2">Continue Watching</h2>
-          <p className="text-muted-foreground text-sm">Curated projects from our community</p>
-        </div>
-
         {/* Netflix-style Carousel */}
-        <div className="relative px-4 pb-8">
+        <div className="relative">
           <Carousel
             opts={{
               align: "start",
               loop: false,
-              dragFree: true,
             }}
             className="w-full"
           >
             <CarouselContent className="-ml-2 md:-ml-4">
               {editorsPicks.map((project, index) => (
-                <CarouselItem key={project.id} className="pl-2 md:pl-4 basis-[140px] sm:basis-[160px] md:basis-[280px] lg:basis-[320px] xl:basis-[360px]">
+                <CarouselItem key={project.id} className="pl-2 md:pl-4 basis-[280px] sm:basis-[320px] md:basis-[400px] lg:basis-[500px] xl:basis-[600px]">
                   <div
                     className="animate-scale-in"
                     style={{
@@ -180,14 +132,14 @@ export const EditorsPick = () => {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="left-2 md:left-4 hidden sm:flex" />
-            <CarouselNext className="right-2 md:right-4 hidden sm:flex" />
+            <CarouselPrevious className="left-4" />
+            <CarouselNext className="right-4" />
           </Carousel>
         </div>
 
-        {/* View All Link - Desktop Only */}
+        {/* View All Link */}
         {editorsPicks.length > 0 && (
-          <div className="hidden md:block text-center pb-16">
+          <div className="text-center mt-12">
             <button className="group bg-gradient-creative hover:shadow-glow text-primary-foreground font-semibold px-8 py-3 rounded-lg transition-all duration-300 hover:scale-105">
               <span className="flex items-center gap-2">
                 Explore All Projects
