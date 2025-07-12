@@ -1,59 +1,9 @@
 import { useMemo } from "react";
-import { Sparkles, TrendingUp, Crown, Grid, ArrowLeft, ArrowRight } from "lucide-react";
+import { Sparkles, TrendingUp, Crown, Grid } from "lucide-react";
 import { ProjectCard } from "./ProjectCard";
 import { useProjects } from "@/hooks/useProjects";
-import { Carousel, CarouselContent, CarouselItem, useCarousel } from "@/components/ui/carousel";
-import { Button } from "@/components/ui/button";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { shuffle } from "@/lib/shuffle";
-
-// Custom navigation component that uses carousel context
-const CarouselNavigation = () => {
-  const { scrollPrev, scrollNext, canScrollPrev, canScrollNext } = useCarousel();
-  
-  // Determine button colors based on scroll availability
-  const getPrevButtonClass = () => {
-    if (!canScrollPrev && canScrollNext) {
-      // Can only go forward, previous button should be muted
-      return "bg-white/5 border-white/10 text-white/50";
-    }
-    // Can go back or can go both ways - use orange
-    return "bg-[#f26522] border-[#f26522] text-white";
-  };
-  
-  const getNextButtonClass = () => {
-    if (!canScrollNext && canScrollPrev) {
-      // Can only go back, next button should be muted
-      return "bg-white/5 border-white/10 text-white/50";
-    }
-    // Can go forward or can go both ways - use orange
-    return "bg-[#f26522] border-[#f26522] text-white";
-  };
-
-  return (
-    <div className="flex justify-center gap-4 mb-6">
-      <Button
-        variant="outline"
-        size="icon"
-        className={`h-8 w-8 rounded-full transition-all duration-300 hover:bg-[#f26522] hover:border-[#f26522] hover:text-white ${getPrevButtonClass()}`}
-        disabled={!canScrollPrev}
-        onClick={scrollPrev}
-      >
-        <ArrowLeft className="h-4 w-4" />
-        <span className="sr-only">Previous slide</span>
-      </Button>
-      <Button
-        variant="outline"
-        size="icon"
-        className={`h-8 w-8 rounded-full transition-all duration-300 hover:bg-[#f26522] hover:border-[#f26522] hover:text-white ${getNextButtonClass()}`}
-        disabled={!canScrollNext}
-        onClick={scrollNext}
-      >
-        <ArrowRight className="h-4 w-4" />
-        <span className="sr-only">Next slide</span>
-      </Button>
-    </div>
-  );
-};
 export const EditorsPick = () => {
   const {
     editorsPicks,
@@ -143,11 +93,6 @@ export const EditorsPick = () => {
           loop: false
         }} className="w-full">
             <CarouselContent className="-ml-2 md:-ml-4">
-              {/* Navigation Controls Above Carousel - moved inside content */}
-              <div className="absolute -top-16 left-1/2 transform -translate-x-1/2 z-10">
-                <CarouselNavigation />
-              </div>
-              
               {editorsPicks.map((project, index) => <CarouselItem key={project.id} className="pl-2 md:pl-4 basis-[320px] sm:basis-[380px] md:basis-[450px] lg:basis-[520px] xl:basis-[600px]">
                   <div className="animate-scale-in" style={{
                 animationDelay: `${index * 0.05}s`,
@@ -157,6 +102,8 @@ export const EditorsPick = () => {
                   </div>
                 </CarouselItem>)}
             </CarouselContent>
+            
+            <CarouselNext className="right-4" />
           </Carousel>
         </div>
 
@@ -172,7 +119,7 @@ export const EditorsPick = () => {
             </div>
 
             {/* Grid Layout */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-2 md:gap-4 auto-rows-fr">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 auto-rows-fr">
               {gridData.map((project, index) => <div key={`grid-${project.id}`} className="animate-scale-in" style={{
             animationDelay: `${index * 0.02}s`,
             animationFillMode: 'both'
