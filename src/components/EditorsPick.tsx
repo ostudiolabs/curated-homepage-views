@@ -11,12 +11,18 @@ export const EditorsPick = () => {
     error
   } = useProjects();
 
-  // Create shuffled grid data with random sizes
+  // Generate randomized grid data with weighted size distribution
   const gridData = useMemo(() => {
-    const sizes: Array<'small' | 'medium' | 'large' | 'xl'> = ['small', 'medium', 'large', 'xl'];
-    return shuffle(editorsPicks).map((project, index) => ({
+    const getRandomSize = (): '1x' | '2x' | '3x' => {
+      const rand = Math.random();
+      if (rand < 0.5) return '1x';      // 50% chance
+      if (rand < 0.8) return '2x';      // 30% chance  
+      return '3x';                      // 20% chance
+    };
+    
+    return shuffle(editorsPicks).map(project => ({
       ...project,
-      gridSize: sizes[index % sizes.length]
+      gridSize: getRandomSize()
     }));
   }, [editorsPicks]);
   if (loading) {
@@ -148,7 +154,7 @@ export const EditorsPick = () => {
             </div>
 
             {/* Grid Layout */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 auto-rows-fr">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4 auto-rows-fr">
               {gridData.map((project, index) => (
                 <div key={`grid-${project.id}`} className="animate-scale-in" style={{
                   animationDelay: `${index * 0.02}s`,
