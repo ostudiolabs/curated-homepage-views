@@ -4,11 +4,9 @@ import type { Project } from "@/types/project";
 
 interface ProjectCardProps {
   project: Project;
-  variant?: 'default' | 'square';
-  size?: '1x' | '2x' | '3x';
 }
 
-export const ProjectCard = ({ project, variant = 'default', size = '1x' }: ProjectCardProps) => {
+export const ProjectCard = ({ project }: ProjectCardProps) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
 
@@ -24,20 +22,8 @@ export const ProjectCard = ({ project, variant = 'default', size = '1x' }: Proje
     setImageLoaded(true);
   };
 
-  const getSizeClasses = () => {
-    if (variant === 'square') {
-      switch (size) {
-        case '1x': return 'col-span-1 row-span-1';
-        case '2x': return 'col-span-2 row-span-2';
-        case '3x': return 'col-span-3 row-span-2';
-        default: return 'col-span-1 row-span-1';
-      }
-    }
-    return '';
-  };
-
   return (
-    <div className={`group relative bg-gradient-card rounded-xl overflow-hidden transition-all duration-500 hover:scale-[1.02] hover:shadow-card-hover animate-scale-in cursor-pointer ${getSizeClasses()}`}>
+    <div className="group relative bg-gradient-card rounded-xl overflow-hidden transition-all duration-500 hover:scale-[1.02] hover:shadow-card-hover animate-scale-in cursor-pointer">
       {/* Editor's Pick Badge */}
       {isEditorsPick && (
         <div className="absolute top-3 left-3 z-20 bg-gradient-creative px-3 py-1 rounded-full flex items-center gap-1 text-sm font-medium text-primary-foreground shadow-glow">
@@ -47,7 +33,7 @@ export const ProjectCard = ({ project, variant = 'default', size = '1x' }: Proje
       )}
 
       {/* Full Image Container */}
-      <div className={`relative overflow-hidden bg-muted ${variant === 'square' ? 'aspect-square' : 'aspect-video'}`}>
+      <div className="relative aspect-video overflow-hidden bg-muted">
         {!imageLoaded && (
           <div className="absolute inset-0 bg-gradient-to-br from-muted to-secondary animate-pulse" />
         )}
