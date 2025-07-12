@@ -69,22 +69,7 @@ export const EditorsPick = () => {
   return <section className="py-16 px-4 bg-gradient-hero">
       <div className="w-full">
         {/* Header */}
-        <div className="text-center mb-12 animate-fade-in max-w-4xl mx-auto">
-          
-          
-          
-          
-          
-
-          {/* Stats */}
-          <div className="flex items-center justify-center gap-8 mt-8">
-            
-            <div className="flex items-center gap-2 text-muted-foreground">
-              <Sparkles className="w-5 h-5 text-primary" />
-              <span className="text-sm font-medium">Hand Selected</span>
-            </div>
-          </div>
-        </div>
+        
 
         {/* Netflix-style Carousel */}
         <div className="relative">
