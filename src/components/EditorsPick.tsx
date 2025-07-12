@@ -94,8 +94,8 @@ export const EditorsPick = () => {
         }} className="w-full">
             {/* Navigation Controls Above Carousel */}
             <div className="flex justify-center gap-4 mb-6">
-              <CarouselPrevious className="relative left-0 top-0" />
-              <CarouselNext className="relative right-0 top-0" />
+              <CarouselPrevious className="relative left-0 top-0 bg-white/10 border-white/20 text-white hover:bg-[#f26522] hover:border-[#f26522] hover:text-white transition-all duration-300" />
+              <CarouselNext className="relative right-0 top-0 bg-white/10 border-white/20 text-white hover:bg-[#f26522] hover:border-[#f26522] hover:text-white transition-all duration-300" />
             </div>
             
             <CarouselContent className="-ml-2 md:-ml-4">
