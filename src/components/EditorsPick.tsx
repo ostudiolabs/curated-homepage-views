@@ -179,7 +179,7 @@ export const EditorsPick = () => {
         </div>
 
         {/* Grid Section */}
-        {gridData.length > 0 && <div className="mt-20">
+        {gridData.length > 0 && <div className="mt-20 p-8 bg-background/50 backdrop-blur-sm rounded-2xl border border-border/20">
             {/* Grid Header */}
             <div className="text-center mb-12 animate-fade-in max-w-4xl mx-auto">
               
