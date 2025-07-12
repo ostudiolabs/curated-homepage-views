@@ -70,12 +70,7 @@ export const EditorsPick = () => {
       <div className="w-full">
         {/* Header */}
         <div className="text-center mb-12 animate-fade-in max-w-4xl mx-auto">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <div className="bg-gradient-creative p-2 rounded-lg shadow-glow">
-              <Crown className="w-6 h-6 text-primary-foreground" />
-            </div>
-            
-          </div>
+          
           
           
           
