@@ -74,28 +74,16 @@ export const EditorsPick = () => {
             <div className="bg-gradient-creative p-2 rounded-lg shadow-glow">
               <Crown className="w-6 h-6 text-primary-foreground" />
             </div>
-            <span className="bg-gradient-creative bg-clip-text text-transparent font-semibold text-lg">
-              Editor's Pick
-            </span>
+            
           </div>
           
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-            Curated Excellence
-          </h2>
           
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto leading-relaxed">
-            Discover handpicked projects that showcase exceptional creativity, technical mastery, 
-            and artistic vision from our talented community.
-          </p>
+          
+          
 
           {/* Stats */}
           <div className="flex items-center justify-center gap-8 mt-8">
-            <div className="flex items-center gap-2 text-muted-foreground">
-              <TrendingUp className="w-5 h-5 text-primary" />
-              <span className="text-sm font-medium">
-                {editorsPicks.length} Featured Project{editorsPicks.length !== 1 ? 's' : ''}
-              </span>
-            </div>
+            
             <div className="flex items-center gap-2 text-muted-foreground">
               <Sparkles className="w-5 h-5 text-primary" />
               <span className="text-sm font-medium">Hand Selected</span>
