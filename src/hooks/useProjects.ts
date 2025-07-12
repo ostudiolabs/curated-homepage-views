@@ -13,19 +13,45 @@ export const useProjects = () => {
         setLoading(true);
         setError(null);
 
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+
         const response = await fetch(
-          'https://cga-devbox.cgafrica.com/project_filtering/projects/latest/?limit=30&offset=0'
+          'https://cga-devbox.cgafrica.com/project_filtering/projects/latest/?limit=30&offset=0',
+          {
+            signal: controller.signal,
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+            },
+            mode: 'cors',
+          }
         );
 
+        clearTimeout(timeoutId);
+
         if (!response.ok) {
-          throw new Error('Failed to fetch projects');
+          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
         }
 
         const data: Project[] = await response.json();
         setProjects(data);
       } catch (err) {
-        console.error('API failed:', err);
-        setError('Failed to fetch projects');
+        if (err instanceof Error) {
+          if (err.name === 'AbortError') {
+            console.error('API request timed out:', err);
+            setError('Request timed out. Please check your internet connection and try again.');
+          } else if (err.message.includes('Failed to fetch')) {
+            console.error('Network error:', err);
+            setError('Unable to connect to the server. Please check your internet connection or try again later.');
+          } else {
+            console.error('API failed:', err);
+            setError(`Failed to fetch projects: ${err.message}`);
+          }
+        } else {
+          console.error('Unknown error:', err);
+          setError('An unexpected error occurred. Please try again.');
+        }
         setProjects([]);
       } finally {
         setLoading(false);
