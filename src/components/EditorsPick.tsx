@@ -77,6 +77,11 @@ export const EditorsPick = () => {
           align: "start",
           loop: false
         }} className="w-full">
+            {/* Navigation above carousel */}
+            <div className="flex justify-end mb-4">
+              <CarouselNext className="relative right-0" />
+            </div>
+            
             <CarouselContent className="-ml-2 md:-ml-4">
               {editorsPicks.map((project, index) => <CarouselItem key={project.id} className="pl-2 md:pl-4 basis-[320px] sm:basis-[380px] md:basis-[450px] lg:basis-[520px] xl:basis-[600px]">
                   <div className="animate-scale-in" style={{
@@ -87,8 +92,6 @@ export const EditorsPick = () => {
                   </div>
                 </CarouselItem>)}
             </CarouselContent>
-            
-            <CarouselNext className="right-4" />
           </Carousel>
         </div>
 
