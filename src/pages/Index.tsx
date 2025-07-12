@@ -11,34 +11,34 @@ const Index = () => {
 
   return <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center px-4 bg-gradient-hero border-b border-border overflow-hidden">
-        <div className="max-w-5xl mx-auto text-center z-10">
+      <section className="relative py-20 px-4 bg-gradient-hero border-b border-border overflow-hidden">
+        <div className="max-w-5xl mx-auto text-center">
           <div className="animate-fade-in">
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-8">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
               <Sparkles className="w-4 h-4 text-primary" />
               <span className="text-sm font-medium text-primary">Curated Excellence</span>
             </div>
 
             {/* Main Title */}
-            <h1 className="text-6xl md:text-8xl font-bold text-foreground mb-6 tracking-tight">
+            <h1 className="text-5xl md:text-7xl font-bold text-foreground mb-6 tracking-tight">
               Editor's
               <span className="bg-gradient-creative bg-clip-text text-transparent"> Pick</span>
             </h1>
 
             {/* Enhanced Description */}
-            <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
               Discover exceptional <span className="text-primary font-semibold">3D art</span>, 
               <span className="text-primary font-semibold"> animation</span>, and 
               <span className="text-primary font-semibold"> digital creativity</span> from talented artists around the world.
             </p>
             
             {/* Call to Action Buttons */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
               <Button 
                 onClick={scrollToContent}
                 size="lg" 
-                className="px-8 py-6 text-lg font-semibold bg-gradient-creative hover:shadow-creative transition-all duration-300 hover:scale-105"
+                className="px-8 py-4 text-lg font-semibold bg-gradient-creative hover:shadow-creative transition-all duration-300 hover:scale-105"
               >
                 <TrendingUp className="w-5 h-5 mr-2" />
                 Explore Collection
@@ -47,7 +47,7 @@ const Index = () => {
               <Button 
                 variant="outline" 
                 size="lg"
-                className="px-8 py-6 text-lg font-semibold border-primary/30 hover:bg-primary/10 hover:border-primary/50 transition-all duration-300"
+                className="px-8 py-4 text-lg font-semibold border-primary/30 hover:bg-primary/10 hover:border-primary/50 transition-all duration-300"
               >
                 <Sparkles className="w-5 h-5 mr-2" />
                 Submit Your Work
@@ -69,14 +69,14 @@ const Index = () => {
         </div>
         
         {/* Enhanced Floating Elements */}
-        <div className="absolute top-20 left-10 w-24 h-24 bg-gradient-creative rounded-full opacity-20 animate-float blur-sm" />
-        <div className="absolute bottom-20 right-10 w-20 h-20 bg-gradient-creative rounded-full opacity-30 animate-float blur-sm" style={{
+        <div className="absolute top-10 left-10 w-20 h-20 bg-gradient-creative rounded-full opacity-20 animate-float blur-sm" />
+        <div className="absolute bottom-10 right-10 w-16 h-16 bg-gradient-creative rounded-full opacity-30 animate-float blur-sm" style={{
           animationDelay: '1s'
         }} />
         <div className="absolute top-1/2 left-20 w-12 h-12 bg-primary/20 rounded-full opacity-40 animate-float" style={{
           animationDelay: '2s'
         }} />
-        <div className="absolute bottom-1/3 right-20 w-16 h-16 bg-primary/15 rounded-full opacity-50 animate-float" style={{
+        <div className="absolute bottom-1/3 right-20 w-14 h-14 bg-primary/15 rounded-full opacity-50 animate-float" style={{
           animationDelay: '0.5s'
         }} />
         
