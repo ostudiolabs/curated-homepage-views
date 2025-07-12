@@ -1,20 +1,15 @@
 import { Sparkles, TrendingUp, Crown } from "lucide-react";
 import { ProjectCard } from "./ProjectCard";
 import { useProjects } from "@/hooks/useProjects";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
-
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 export const EditorsPick = () => {
-  const { editorsPicks, loading, error } = useProjects();
-
+  const {
+    editorsPicks,
+    loading,
+    error
+  } = useProjects();
   if (loading) {
-    return (
-      <section className="py-16 px-4 bg-gradient-hero">
+    return <section className="py-16 px-4 bg-gradient-hero">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <div className="w-32 h-8 bg-gradient-creative rounded-lg animate-pulse mx-auto mb-4" />
@@ -23,8 +18,7 @@ export const EditorsPick = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[...Array(6)].map((_, i) => (
-              <div key={i} className="bg-gradient-card rounded-xl overflow-hidden animate-pulse">
+            {[...Array(6)].map((_, i) => <div key={i} className="bg-gradient-card rounded-xl overflow-hidden animate-pulse">
                 <div className="aspect-video bg-muted" />
                 <div className="p-5 space-y-3">
                   <div className="h-6 bg-muted rounded w-3/4" />
@@ -35,30 +29,23 @@ export const EditorsPick = () => {
                     <div className="h-6 bg-muted rounded w-16" />
                   </div>
                 </div>
-              </div>
-            ))}
+              </div>)}
           </div>
         </div>
-      </section>
-    );
+      </section>;
   }
-
   if (error) {
-    return (
-      <section className="py-16 px-4 bg-gradient-hero">
+    return <section className="py-16 px-4 bg-gradient-hero">
         <div className="max-w-7xl mx-auto text-center">
           <div className="bg-destructive/10 border border-destructive/20 rounded-lg p-8">
             <h2 className="text-2xl font-bold text-destructive mb-2">Unable to Load Projects</h2>
             <p className="text-muted-foreground">{error}</p>
           </div>
         </div>
-      </section>
-    );
+      </section>;
   }
-
   if (editorsPicks.length === 0) {
-    return (
-      <section className="py-16 px-4 bg-gradient-hero">
+    return <section className="py-16 px-4 bg-gradient-hero">
         <div className="max-w-7xl mx-auto text-center">
           <div className="bg-muted/10 border border-muted/20 rounded-lg p-8">
             <Crown className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
@@ -66,12 +53,9 @@ export const EditorsPick = () => {
             <p className="text-muted-foreground">Check back soon for our curated selection of outstanding projects!</p>
           </div>
         </div>
-      </section>
-    );
+      </section>;
   }
-
-  return (
-    <section className="py-16 px-4 bg-gradient-hero">
+  return <section className="py-16 px-4 bg-gradient-hero">
       <div className="w-full">
         {/* Header */}
         <div className="text-center mb-12 animate-fade-in max-w-4xl mx-auto">
@@ -110,27 +94,19 @@ export const EditorsPick = () => {
 
         {/* Netflix-style Carousel */}
         <div className="relative">
-          <Carousel
-            opts={{
-              align: "start",
-              loop: false,
-            }}
-            className="w-full"
-          >
+          <Carousel opts={{
+          align: "start",
+          loop: false
+        }} className="w-full">
             <CarouselContent className="-ml-2 md:-ml-4">
-              {editorsPicks.map((project, index) => (
-                <CarouselItem key={project.id} className="pl-2 md:pl-4 basis-[280px] sm:basis-[320px] md:basis-[400px] lg:basis-[500px] xl:basis-[600px]">
-                  <div
-                    className="animate-scale-in"
-                    style={{
-                      animationDelay: `${index * 0.05}s`,
-                      animationFillMode: 'both'
-                    }}
-                  >
+              {editorsPicks.map((project, index) => <CarouselItem key={project.id} className="pl-2 md:pl-4 basis-[280px] sm:basis-[320px] md:basis-[400px] lg:basis-[500px] xl:basis-[600px]">
+                  <div className="animate-scale-in" style={{
+                animationDelay: `${index * 0.05}s`,
+                animationFillMode: 'both'
+              }}>
                     <ProjectCard project={project} />
                   </div>
-                </CarouselItem>
-              ))}
+                </CarouselItem>)}
             </CarouselContent>
             <CarouselPrevious className="left-4" />
             <CarouselNext className="right-4" />
@@ -138,17 +114,9 @@ export const EditorsPick = () => {
         </div>
 
         {/* View All Link */}
-        {editorsPicks.length > 0 && (
-          <div className="text-center mt-12">
-            <button className="group bg-gradient-creative hover:shadow-glow text-primary-foreground font-semibold px-8 py-3 rounded-lg transition-all duration-300 hover:scale-105">
-              <span className="flex items-center gap-2">
-                Explore All Projects
-                <TrendingUp className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-              </span>
-            </button>
-          </div>
-        )}
+        {editorsPicks.length > 0 && <div className="text-center mt-12">
+            
+          </div>}
       </div>
-    </section>
-  );
+    </section>;
 };
