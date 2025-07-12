@@ -4,9 +4,11 @@ import type { Project } from "@/types/project";
 
 interface ProjectCardProps {
   project: Project;
+  variant?: 'default' | 'square';
+  size?: 'small' | 'medium' | 'large' | 'xl';
 }
 
-export const ProjectCard = ({ project }: ProjectCardProps) => {
+export const ProjectCard = ({ project, variant = 'default', size = 'medium' }: ProjectCardProps) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
 
@@ -22,8 +24,21 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
     setImageLoaded(true);
   };
 
+  const getSizeClasses = () => {
+    if (variant === 'square') {
+      switch (size) {
+        case 'small': return 'col-span-1 row-span-1';
+        case 'medium': return 'col-span-2 row-span-1';
+        case 'large': return 'col-span-2 row-span-2';
+        case 'xl': return 'col-span-3 row-span-2';
+        default: return 'col-span-1 row-span-1';
+      }
+    }
+    return '';
+  };
+
   return (
-    <div className="group relative bg-gradient-card rounded-xl overflow-hidden transition-all duration-500 hover:scale-[1.02] hover:shadow-card-hover animate-scale-in cursor-pointer">
+    <div className={`group relative bg-gradient-card rounded-xl overflow-hidden transition-all duration-500 hover:scale-[1.02] hover:shadow-card-hover animate-scale-in cursor-pointer ${getSizeClasses()}`}>
       {/* Editor's Pick Badge */}
       {isEditorsPick && (
         <div className="absolute top-3 left-3 z-20 bg-gradient-creative px-3 py-1 rounded-full flex items-center gap-1 text-sm font-medium text-primary-foreground shadow-glow">
@@ -33,7 +48,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
       )}
 
       {/* Full Image Container */}
-      <div className="relative aspect-video overflow-hidden bg-muted">
+      <div className={`relative overflow-hidden bg-muted ${variant === 'square' ? 'aspect-square' : 'aspect-video'}`}>
         {!imageLoaded && (
           <div className="absolute inset-0 bg-gradient-to-br from-muted to-secondary animate-pulse" />
         )}

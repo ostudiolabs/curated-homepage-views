@@ -1,9 +1,9 @@
-import { Sparkles, TrendingUp, Crown } from "lucide-react";
+import { useMemo } from "react";
+import { Sparkles, TrendingUp, Crown, Grid } from "lucide-react";
 import { ProjectCard } from "./ProjectCard";
 import { useProjects } from "@/hooks/useProjects";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
-import { useMemo } from "react";
-
+import { shuffle } from "@/lib/shuffle";
 export const EditorsPick = () => {
   const {
     editorsPicks,
@@ -11,9 +11,13 @@ export const EditorsPick = () => {
     error
   } = useProjects();
 
-  // Randomize the order of projects for the grid
-  const randomizedProjects = useMemo(() => {
-    return [...editorsPicks].sort(() => Math.random() - 0.5);
+  // Create shuffled grid data with random sizes
+  const gridData = useMemo(() => {
+    const sizes: Array<'small' | 'medium' | 'large' | 'xl'> = ['small', 'medium', 'large', 'xl'];
+    return shuffle(editorsPicks).map((project, index) => ({
+      ...project,
+      gridSize: sizes[index % sizes.length]
+    }));
   }, [editorsPicks]);
   if (loading) {
     return <section className="py-16 px-4 bg-gradient-hero">
@@ -99,21 +103,19 @@ export const EditorsPick = () => {
           </div>
         </div>
 
-        {/* Netflix-style Carousel - Square Thumbnails */}
-        <div className="relative mb-16">
+        {/* Netflix-style Carousel */}
+        <div className="relative">
           <Carousel opts={{
           align: "start",
           loop: false
         }} className="w-full">
             <CarouselContent className="-ml-2 md:-ml-4">
-              {editorsPicks.map((project, index) => <CarouselItem key={project.id} className="pl-2 md:pl-4 basis-[300px] sm:basis-[350px] md:basis-[400px] lg:basis-[450px] xl:basis-[500px]">
+              {editorsPicks.map((project, index) => <CarouselItem key={project.id} className="pl-2 md:pl-4 basis-[320px] sm:basis-[380px] md:basis-[450px] lg:basis-[520px] xl:basis-[600px]">
                   <div className="animate-scale-in" style={{
                 animationDelay: `${index * 0.05}s`,
                 animationFillMode: 'both'
               }}>
-                    <div className="aspect-square">
-                      <ProjectCard project={project} />
-                    </div>
+                    <ProjectCard project={project} variant="square" />
                   </div>
                 </CarouselItem>)}
             </CarouselContent>
@@ -122,25 +124,41 @@ export const EditorsPick = () => {
           </Carousel>
         </div>
 
-        {/* Grid Layout - Randomized Projects */}
-        {randomizedProjects.length > 0 && (
-          <div className="w-full px-4">
-            <div className="text-center mb-8 max-w-4xl mx-auto">
-              <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
-                Explore More
-              </h3>
-              <p className="text-muted-foreground">
-                Discover more amazing projects from our community
+        {/* Grid Section */}
+        {gridData.length > 0 && (
+          <div className="mt-20">
+            {/* Grid Header */}
+            <div className="text-center mb-12 animate-fade-in max-w-4xl mx-auto">
+              <div className="flex items-center justify-center gap-2 mb-4">
+                <div className="bg-gradient-creative p-2 rounded-lg shadow-glow">
+                  <Grid className="w-6 h-6 text-primary-foreground" />
+                </div>
+                <span className="bg-gradient-creative bg-clip-text text-transparent font-semibold text-lg">
+                  Explore More
+                </span>
+              </div>
+              
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+                Creative Showcase
+              </h2>
+              
+              <p className="text-muted-foreground text-lg max-w-2xl mx-auto leading-relaxed">
+                A dynamic grid of exceptional projects, refreshed each time you visit.
               </p>
             </div>
-            
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 gap-2 md:gap-4">
-              {randomizedProjects.map((project, index) => (
-                <div key={`grid-${project.id}`} className="animate-scale-in aspect-square" style={{
+
+            {/* Grid Layout */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4 auto-rows-fr">
+              {gridData.map((project, index) => (
+                <div key={`grid-${project.id}`} className="animate-scale-in" style={{
                   animationDelay: `${index * 0.02}s`,
                   animationFillMode: 'both'
                 }}>
-                  <ProjectCard project={project} />
+                  <ProjectCard 
+                    project={project} 
+                    variant="square" 
+                    size={project.gridSize}
+                  />
                 </div>
               ))}
             </div>
